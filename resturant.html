@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamabad Restaurant</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+nav {
+    background: black;
+    padding: 15px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: gold;
+}
+
+header {
+    background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    background: rgba(0,0,0,0.7);
+    padding: 20px 40px;
+    font-size: 50px;
+    border-radius: 10px;
+    color: gold;
+    text-align: center;
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.menu-item {
+    background: #1c1c1c;
+    margin: 20px;
+    width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.menu-item h3 {
+    margin: 10px 0;
+}
+
+.menu-item button {
+    background: gold;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.menu-item button:hover {
+    background: white;
+    color: black;
+}
+
+.cart {
+    background: #1a1a1a;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+.cart h2 {
+    color: gold;
+}
+
+.cart button {
+    background: gold;
+    border: none;
+    padding: 12px 25px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.cart button:hover {
+    background: white;
+    color: black;
+}
+
+footer {
+    background: black;
+    padding: 20px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="#menu">Menu</a>
+<a href="#cart">Order</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<header>
+<h1>Islamabad Restaurant</h1>
+</header>
+
+<section id="menu">
+<h2 style="color:gold;">Our Special Menu</h2>
+<div class="menu-container">
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=600&q=80" alt="Chicken Karahi">
+<h3>Chicken Karahi</h3>
+<p>Rs 950</p>
+<button onclick="addToCart('Chicken Karahi', 950)">Add to Cart</button>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=600&q=80" alt="Beef Biryani">
+<h3>Beef Biryani</h3>
+<p>Rs 450</p>
+<button onclick="addToCart('Beef Biryani', 450)">Add to Cart</button>
+</div>
+
+<div class="menu-item">
+<img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=600&q=80" alt="BBQ Platter">
+<h3>BBQ Platter</h3>
+<p>Rs 1200</p>
+<button onclick="addToCart('BBQ Platter', 1200)">Add to Cart</button>
+</div>
+
+</div>
+</section>
+
+<section id="cart" class="cart">
+<h2>Your Order</h2>
+<ul id="cartItems"></ul>
+<h3 id="total">Total: Rs 0</h3>
+<button onclick="pay('Easypaisa')">Pay with Easypaisa</button>
+<button onclick="pay('JazzCash')">Pay with JazzCash</button>
+</section>
+
+<section id="contact">
+<h2 style="color:gold;">Contact Us</h2>
+<p>Margalla Town Phase 1, Islamabad</p>
+<p>Phone: +92 3XX XXXXXXX</p>
+<p>Open: 6 AM – 11 PM</p>
+</section>
+
+<footer>
+© 2026 Islamabad Restaurant | Designed by Abdullah 😎
+</footer>
+
+<script>
+let total = 0;
+const cartItemsList = document.getElementById("cartItems");
+
+function addToCart(item, price) {
+    const li = document.createElement("li");
+    li.textContent = item + " - Rs " + price;
+    cartItemsList.appendChild(li);
+
+    total += price;
+    document.getElementById("total").textContent = "Total: Rs " + total;
+}
+
+function pay(method) {
+    if(total === 0){
+        alert("Your cart is empty!");
+    } else {
+        alert("Payment via " + method + " successful! Thank you 😍");
+        // Reset cart
+        cartItemsList.innerHTML = "";
+        total = 0;
+        document.getElementById("total").textContent = "Total: Rs 0";
+    }
+}
+</script>
+
+</body>
+</html>
